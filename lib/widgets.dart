@@ -55,8 +55,10 @@ class TextInput extends StatelessWidget {
         color: Colors.white10,
         child: SizedBox(
           width: _width,
-          height: bottonHeight,
           child: TextField(
+            keyboardType: TextInputType.multiline,
+            maxLines: 5,
+            minLines: 1,
             controller: TextEditingController(text: text),
             onChanged: (text) {
               onChange(text);

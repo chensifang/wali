@@ -37,6 +37,21 @@ class Api {
       }
     }
   }
+
+  // 获取群 id
+  static Future<String> getChatId(String name) async {
+    var url = "https://open.feishu.cn/open-apis/chat/v4/list";
+    var resp = await Http.get(url, null, await Auth.getTenantHeader());
+    var group = resp["groups"];
+    var chatId = "";
+    for (var g in group) {
+      if (g["name"] == name) {
+        chatId = g["chat_id"];
+      }
+    }
+    print(chatId);
+    return chatId;
+  }
 }
 
 

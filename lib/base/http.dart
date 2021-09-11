@@ -19,7 +19,7 @@ class Http {
   }
 
   static Future<Map> get(String url,
-      [Map<String, dynamic> arg, Map headers]) async {
+      Map<String, dynamic> arg, Map headers) async {
     Options options = Options();
     options.headers = headers;
     Response resp =
@@ -40,7 +40,7 @@ class Http {
     }
   }
 
-  static Future<Map> post(String url, [Map arg, Map headers]) async {
+  static Future<Map> post(String url, Map arg, Map headers) async {
     Options options = Options();
     options.headers = headers;
     Response resp = (await Http.dio.post(url, data: arg, options: options));
