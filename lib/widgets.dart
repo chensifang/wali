@@ -49,7 +49,6 @@ class TextInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final _width = size.width;
-    final bottonHeight = 40.0;
     return Container(
         padding: EdgeInsets.only(left: 30, right: 30, top: 0, bottom: 10),
         color: Colors.white10,
@@ -85,7 +84,10 @@ class WText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
-      child: Text(title),
+      child: Text(
+        title,
+        style: TextStyle(color: Colors.green),
+      ),
     );
   }
 }

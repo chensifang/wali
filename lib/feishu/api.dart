@@ -52,6 +52,29 @@ class Api {
     print(chatId);
     return chatId;
   }
+
+  // 获取群成员信息
+  static Future<List<Map>> getChatMembers(String chatName) async {
+    var url = "https://open.feishu.cn/open-apis/chat/v4/members";
+    var arg = {
+      "chat_id": await Api.getChatId(chatName),
+      "page_size": 200,
+    };
+    var resp = await Http.get(url, arg, Auth.getUserHeader());
+    if (resp["code"] == 0) {
+      return resp["members"];
+    }
+    return [];
+  }
+
+  // 获取用户 open_id
+  static getOpenId(List<Map> members, String name) {
+    for (Map member in members) {
+      if (member["name"] == name) {
+        return member["open_id"];
+      }
+    }
+  }
 }
 
 

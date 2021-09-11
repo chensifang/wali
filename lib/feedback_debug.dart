@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wali/business/robot.dart';
 import 'package:wali/business/writer.dart';
+import 'package:wali/feishu/api.dart';
 import 'package:wali/feishu/auth.dart';
 import 'package:wali/share.dart';
 import 'package:wali/widgets.dart';
@@ -64,6 +65,18 @@ class _FeedbackPageDebugState extends State<FeedbackPageDebug> {
           action: () {
             Robot.sendTextMsg(
                 Prefs.getString("debug_group"), Prefs.getString("debug_text"));
+          },
+        ),
+        Btn(
+          title: "获取群成员",
+          action: () {
+            Api.getChatMembers("瓦力");
+          },
+        ),
+        Btn(
+          title: "发图片",
+          action: () {
+            Robot.sendImageMsg("瓦力", null);
           },
         ),
       ],

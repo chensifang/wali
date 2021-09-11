@@ -18,8 +18,8 @@ class Http {
     }
   }
 
-  static Future<Map> get(String url,
-      Map<String, dynamic> arg, Map headers) async {
+  static Future<Map> get(
+      String url, Map<String, dynamic> arg, Map headers) async {
     Options options = Options();
     options.headers = headers;
     Response resp =
