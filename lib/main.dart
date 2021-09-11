@@ -1,9 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:wali/feedback.dart';
-import 'package:wali/tool.dart';
+import 'package:wali/feedback_debug.dart';
+import 'package:wali/share.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  await runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await Prefs.initSharedPreferences();
+      runApp(MyApp());
+    },
+    (error, st) => print(error),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -29,8 +39,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final pages = [FeedbackPage(), Tool()];
+  final pages = [FeedbackPage(), FeedbackPageDebug()];
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     print(currentIndex);
@@ -68,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     BottomNavigationBarItem(
       backgroundColor: Colors.blue,
       icon: Icon(Icons.message),
-      label: "待定",
+      label: "反馈调试",
     ),
   ];
 }

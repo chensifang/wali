@@ -41,7 +41,9 @@ class Btn extends StatelessWidget {
 class TextInput extends StatelessWidget {
   String hintText;
   String text;
-  TextInput({Key key, this.hintText, this.text}) : super(key: key);
+  Function onChange;
+  TextInput({Key key, this.hintText, this.text, this.onChange})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +57,15 @@ class TextInput extends StatelessWidget {
           width: _width,
           height: bottonHeight,
           child: TextField(
+            controller: TextEditingController(text: text),
+            onChanged: (text) {
+              onChange(text);
+            },
             textAlign: TextAlign.center,
             decoration: InputDecoration(
               hintText: hintText,
+              labelText: hintText.substring(
+                  hintText.contains(" ") ? 4 : 3, hintText.length),
               hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 13),
             ),
           ),
